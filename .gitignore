@@ -1,0 +1,6 @@
+.env
+logs/*
+simulation/internal_waves/iwGMtfast.m
+publication_figures/.ipynb_checkpoints/
+.ipynb_checkpoints/
+publication_figures/figures/

@@ -1,0 +1,27 @@
+#!/bin/bash
+#SBATCH --job-name=pe_monthly
+#SBATCH --output=logs/pe_monthly_%A_%a.out
+#SBATCH --error=logs/pe_monthly_%A_%a.err
+#SBATCH --time=10:00:00
+#SBATCH --mem=50G
+#SBATCH --cpus-per-task=32 #number of CPUs
+#SBATCH --account=coenv
+#SBATCH --partition=ckpt
+#SBATCH --array=0-71
+
+# Make sure logs directory exists
+mkdir -p logs
+
+# Define all nodes and months
+NODES=("LJ01C" "AXCC1" "AXBA1" "AXEC2" "LJ01A" "HYS14")
+MONTHS=(1 2 3 4 5 6 7 8 9 10 11 12)
+
+# Calculate node and month from SLURM_ARRAY_TASK_ID
+node_index=$((SLURM_ARRAY_TASK_ID / 12))
+month_index=$((SLURM_ARRAY_TASK_ID % 12))
+
+node=${NODES[$node_index]}
+month=${MONTHS[$month_index]}
+
+echo "Running with node=${node}, month=${month}"
+python simulation/pe_simulation/monthly_arrivals.py --node "${node}" --month "${month}"

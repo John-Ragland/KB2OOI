@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#SBATCH --array=1-50  # Replace N with your loop size
+#SBATCH --account=coenv
+#SBATCH --cpus-per-task=2 #number of CPUs
+#SBATCH --mem=30GB #RAM
+#SBATCH --partition='cpu-g2'
+#SBATCH --time=48:00:00 #time limit 32 hour
+#SBATCH -J dciw
+#SBATCH --output=logs/iws_%j_%a.out
+#SBATCH --error=logs/iws_%j_%a.err
+
+# The $SLURM_ARRAY_TASK_ID will be the loop index
+cd simulation/internal_waves
+module load matlab
+matlab -nodisplay -nodesktop -r "KB2OOI_real_func($SLURM_ARRAY_TASK_ID); exit"
