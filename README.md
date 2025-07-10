@@ -1,6 +1,7 @@
 # Kauai Beacon to OOI
 Code used to run analysis and simulation in support of 
 Ragland et. al. 2025 Receptions of Kauai Beacon transmissions by Ocean Observatories Initiative Hydrophones
+Preprint available [here](https://essopenarchive.org/doi/full/10.22541/essoar.174742943.36577825)
 
 <figure style="width: 450px; margin: 0 auto;">
   <img src="./publication_figures/figures/environment.png" alt="Plot of measured and modelled acoustic receptions" width="100%">
